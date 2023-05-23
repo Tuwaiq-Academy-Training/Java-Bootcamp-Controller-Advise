@@ -11,6 +11,14 @@
         String msg = e.getFieldError().getDefaultMessage();
         return ResponseEntity.status(400).body(new ApiResponse(msg));
     }
+    
+     // Server Validation Exception
+    @ExceptionHandler(value = ConstraintViolationException.class)
+    public ResponseEntity<ApiResponse> ConstraintViolationException(ConstraintViolationException e) {
+        String msg =e.getMessage();
+        return ResponseEntity.status(400).body(new ApiResponse(msg));
+    }
+
 
     // SQL Constraint Exception
     @ExceptionHandler(value = SQLIntegrityConstraintViolationException.class)
