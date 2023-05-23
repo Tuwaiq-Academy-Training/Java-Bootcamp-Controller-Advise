@@ -20,11 +20,18 @@
     }
 
 
-    // SQL Constraint Exception
+    // SQL Constraint Ex:(Duplicate) Exception
     @ExceptionHandler(value = SQLIntegrityConstraintViolationException.class)
     public ResponseEntity<ApiResponse> SQLIntegrityConstraintViolationException(SQLIntegrityConstraintViolationException e){
         String msg=e.getMessage();
         return ResponseEntity.status(400).body(new ApiResponse(msg));
+    }
+    
+    // wrong write SQL in @column Exception
+    @ExceptionHandler(value = InvalidDataAccessResourceUsageException.class )
+    public ResponseEntity<ApiResponse> InvalidDataAccessResourceUsageException(InvalidDataAccessResourceUsageException e){
+        String msg=e.getMessage();
+        return ResponseEntity.status(200).body(new ApiResponse(msg));
     }
     
      // Database Constraint Exception
