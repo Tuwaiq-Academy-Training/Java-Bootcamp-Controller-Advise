@@ -26,6 +26,13 @@
         String msg=e.getMessage();
         return ResponseEntity.status(400).body(new ApiResponse(msg));
     }
+    
+     // Database Constraint Exception
+    @ExceptionHandler(value = DataIntegrityViolationException.class)
+    public ResponseEntity<ApiResponse> DataIntegrityViolationException(DataIntegrityViolationException e){
+        String msg=e.getMessage();
+        return ResponseEntity.status(400).body(new ApiResponse(msg));
+    }
 
     // Method not allowed Exception
     @ExceptionHandler(value = HttpRequestMethodNotSupportedException.class)
